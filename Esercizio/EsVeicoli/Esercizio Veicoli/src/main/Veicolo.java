@@ -1,7 +1,5 @@
 /**
- * Autore: Liam Panarisi
- * Data creazione: 04.09.2025
- * Data utlima modifica: 08.09.2025
+ * Autore: Michel Massard
  * Titolo Progetto: Veicolo
  * Titolo classe: Veicolo
  */
