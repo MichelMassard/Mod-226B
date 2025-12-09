@@ -1,0 +1,89 @@
+@startuml
+class model.AudioBook {
+- String narrator
+- int duration
+- String language
++ String getContentType()
++ String getDescription()
++ String getFormattedDuration()
++ double calculatePrice()
+}
+
+
+class model.DigitalMagazine {
+- int issueNumber
+- LocalDate publicationDate
+- String category
++ String getContentType()
++ String getDescription()
++ boolean isRecentIssue()
++ double calculatePrice()
+}
+
+
+interface model.Purchasable {
+~ double calculatePrice()
+~ void applyDiscount(double)
+~ {static} double getDefaultTaxRate()
+~ double getPriceWithTax()
+}
+
+enum model.Difficulty {
++  BEGINNER
++  INTERMEDIATE
++  ADVANCED
+}
+
+enum model.Genre {
++  FICTION
++  NON_FICTION
++  BIOGRAPHY
++  SCIENCE
++  TECHNOLOGY
+}
+
+class model.EBook {
+- Genre genre
+- int pageCount
+- boolean isIllustrated
++ String getContentType()
++ String getDescription()
++ double getReadingTime()
+}
+
+
+abstract class model.DigitalContent {
+# String id
+# String title
+# String author
+# double basePrice
+# double currentDiscount
++ {abstract}String getContentType()
++ {abstract}String getDescription()
++ double calculatePrice()
++ void applyDiscount(double)
++ boolean equals(Object)
++ int hashCode()
+}
+
+
+class model.OnlineCourse {
+- String instructor
+- Difficulty difficulty
+- double estimatedHours
++ String getContentType()
++ String getDescription()
++ boolean getCertificationEligible()
+}
+
+
+
+
+model.DigitalContent <|-- model.AudioBook
+model.DigitalContent <|-- model.DigitalMagazine
+model.DigitalContent <|-- model.EBook
+model.Purchasable <|.. model.DigitalContent
+model.DigitalContent <|-- model.OnlineCourse
+model.OnlineCourse <|-- Genre
+model.OnlineCourse <|-- Difficulty
+@enduml
